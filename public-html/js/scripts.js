@@ -10,7 +10,8 @@ function addValue(){
 
     axios.put(`http://${URL}/${key}`, { value: value })
     .then(response => {
-        console.log(response.data);
+        console.log(response.data)
+        document.getElementById("outputs").innerHTML = "Added " + response.data
     })
     .catch(error => console.error('On get values error', error))
 }
@@ -24,7 +25,8 @@ function getValue(){
 
     axios.get(`http://${URL}/${key}`)
     .then(response => {
-        console.log(response.data);
+        console.log(response.data)
+        document.getElementById("outputs").innerHTML = response.data
     })
     .catch(error => console.error('On get values error', error))
 }
@@ -38,7 +40,8 @@ function deleteValue(){
 
     axios.delete(`http://${URL}/${key}`)
     .then(response => {
-        console.log(response.data);
+        console.log(response.data)
+        document.getElementById("outputs").innerHTML = "Deleted " + key
     })
     .catch(error => console.error('On get values error', error))
 }
@@ -46,7 +49,13 @@ function deleteValue(){
 function getValues(){
     axios.get(`http://${URL}`)
     .then(response => {
-        console.log(response.data);
+        console.log(response.data)
+        let output = ""
+        for(let i = 0; i < response.data.length; i++){
+            console.log(response.data[i])
+            output = output + response.data[i]+"<br>"
+        }
+        document.getElementById("outputs").innerHTML = output
     })
     .catch(error => console.error('On get values error', error))
 }
